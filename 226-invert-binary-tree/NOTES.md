@@ -1,1 +1,1 @@
-​
+store both the left and right node and recurse both .TC O(n)
