@@ -1,13 +1,13 @@
 class Solution {
     public int singleNonDuplicate(int[] nums) {
-        if(nums.length==1)return nums[0];
-         if(nums[0]!=nums[1])return nums[0];
-          if(nums[nums.length-1]!=nums[nums.length-2])return nums[nums.length-1];
-          for(int i=1;i<nums.length-2;i++){
-           
-            if(nums[i]!=nums[i-1] && nums[i]!=nums[i+1])
-                return nums[i];
+          int low=0 ; int high=nums.length-1;
+        while(low<high){
+            int mid = low + (high-low)/2;
+            if(mid%2==0 && nums[mid]==nums[mid+1] || mid%2!=0 && nums[mid]==nums[mid-1])
+                low= mid+1;
+            else
+                high=mid;
         }
-      return -1;  
+        return nums[low];
     }
 }
