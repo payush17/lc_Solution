@@ -5,11 +5,9 @@ class Solution {
             int mid = low + (high-low)/2;
             min= Math.min(arr[mid],min);
             
-            if(arr[low]<= arr[mid] && arr[low]<arr[high])
+            if(arr[low]<= arr[mid] && arr[low]<arr[high] || arr[low]>arr[mid] && arr[high]>arr[mid])
                 high = mid-1;
-            else 
-                if(arr[low]>arr[mid] && arr[high]>arr[mid])
-                high = mid-1;
+            
             else
                 low = mid+1;
             
