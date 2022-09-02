@@ -2,14 +2,14 @@ class Solution {
 
     public int minCostClimbingStairs(int[] cost) {
         int n = cost.length;
-        int[] dp = new int[n + 1];
-       
-        dp[0] = 0;
-        dp[1] = 0;
-
+      //  int[] dp = new int[n + 1];
+         int curr;int t1=0;int t2=0;
+        
         for (int i = 2; i <= n; i++) {
-            dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+            curr = Math.min(t1 + cost[i - 1], t2+ cost[i - 2]);
+            t2 = t1;
+            t1= curr;
         }
-        return dp[n];
+        return t1;
     }
 }
