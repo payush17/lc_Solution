@@ -11,8 +11,8 @@ class Solution {
             int k = low + (high - low) / 2;
             int curr_ans = 0;
             for (int x : nums)
-                curr_ans += Math.ceil(1.0 * x / k);
-
+                curr_ans += (x+ k-1)/k ; 
+// v += (n + mid - 1)/ mid ;
             if (curr_ans <= threshold) {
                 min_divisor = Math.min(min_divisor, k);
                 high = k;
