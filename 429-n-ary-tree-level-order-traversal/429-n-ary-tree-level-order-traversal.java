@@ -34,7 +34,7 @@ class Solution {
                // child = node.children;
                 list.add(v);
 
-                for (Node x : node.children) q.add(x);
+                for (Node x : node.children) q.offer(x);
             }
             lot.add(list);
         }
