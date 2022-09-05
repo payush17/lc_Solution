@@ -1,24 +1,24 @@
 class Solution {
-    public int minimizedMaximum(int threshold, int[] nums) {
-        int low = 1;
-        int high = nums[0];
-        for(int x : nums)
-            high = Math.max(high,x);
-
-        int min_divisor = high;
+    public int minimizedMaximum(int h, int[]piles) {
+    int low = 1;
+        int high = 1000000000;
+        // we can also ingore to find max element by using max constriant
+      //  for (int x : piles)
+       //     high = Math.max(high, x);
+        
+        int eating_speed = high;
         while (low < high) {
             int k = low + (high - low) / 2;
-            int curr_ans = 0;
-            for (int x : nums)
-                curr_ans += (x+ k-1)/k ; 
-// v += (n + mid - 1)/ mid ;
-            if (curr_ans <= threshold) {
-                min_divisor = Math.min(min_divisor, k);
+            int hours = 0;
+            for (int x : piles)
+                hours += Math.ceil(1.0 * x / k);
+
+            if (hours <= h) {
+                eating_speed = Math.min(eating_speed, k);
                 high = k;
-            } 
-            else low = k + 1;
+            } else low = k + 1;
         }
 
-        return min_divisor; 
+        return eating_speed;
     }
 }
