@@ -1,4 +1,5 @@
 class Solution {
+
     public int findMin(int[] nums) {
        int lo = 0, hi = nums.length - 1;
         
@@ -9,12 +10,14 @@ class Solution {
             
             if (nums[mid] > nums[hi]) {
                 lo = mid + 1;
-            } else{
-               
+            } else if (nums[mid] < nums[hi]) {
                 hi = mid;
-            } 
-        
+            } else {
+                hi--;
+            }
         }
-            return nums[lo];
+        
+        return nums[hi];
+        
     }
 }
