@@ -29,6 +29,7 @@ class Solution {
             str.append(")");
         }
         else{
+            //if left is null but right not enter empty brackets
             if(root.right!=null){
                 str.append("(");
                 str.append(")");
