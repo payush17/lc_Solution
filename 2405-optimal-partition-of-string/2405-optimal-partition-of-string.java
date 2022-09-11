@@ -1,18 +1,16 @@
 class Solution {
-public:
-    int partitionString(string s) {
-        int sub_String=1;
-        set<char> set;
-        for(int i=0;i<s.length();i++){
-            if(set.find(s[i])==set.end()){
-                set.insert(s[i]);
+    public int partitionString(String s) {
+        int subString =1;//no parttion
+        Set<Character> set = new HashSet<>();
+        for(int i =0;i<s.length();i++){
+            if(!set.contains(s.charAt(i)))
+                set.add(s.charAt(i));
+            else{
+                subString++;
+                set.clear();
+                set.add(s.charAt(i));
             }
-               else{
-                   sub_String++;
-                   set.clear();
-                   set.insert(s[i]);
-               }
         }
-        return sub_String;
+        return subString;
     }
-};
+}
