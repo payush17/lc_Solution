@@ -22,9 +22,9 @@ class Solution {
         q.offer(root);
         while(!q.isEmpty()){
             int size = q.size();
-            for(int i = 0;i < size;i++){
+            while(size>0){
                 TreeNode curr = q.poll();
-                if(i == size-1){
+                if(size==1){
                     rightView.add(curr.val);
                 }
                 if(curr.left != null){
@@ -33,6 +33,7 @@ class Solution {
                 if(curr.right != null){
                     q.offer(curr.right);
                 } 
+                size--;
             }
         }
         return rightView;
