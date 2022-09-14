@@ -16,8 +16,8 @@
 class Solution {
 
     public int pseudoPalindromicPaths(TreeNode root) {
-       // HashSet<Integer> set = new HashSet<>();
-        int ans = dfs(root, new HashSet<>());
+       HashSet<Integer> set = new HashSet<>();
+        int ans = dfs(root, set);
         return ans;
     }
 
@@ -31,8 +31,8 @@ class Solution {
         if (root.left == null && root.right == null) 
             return set.size() <= 1 ? 1 : 0;
         
-        int left = dfs(root.left, new HashSet<>(set));
-        int right = dfs(root.right, new HashSet<>(set));
+        int left = dfs(root.left, new HashSet(set));
+        int right = dfs(root.right, new HashSet(set));
         return left + right;
     }
 }
