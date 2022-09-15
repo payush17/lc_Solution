@@ -10,11 +10,19 @@
 
 class Solution {
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        //either null or single root
-        if(original==null || original == target)return cloned;
-        TreeNode left = getTargetCopy(original.left,cloned.left,target);
-        if(left!=null)
-            return left;
-        return getTargetCopy(original.right,cloned.right,target);
+       Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(cloned);
+        
+        while (!queue.isEmpty()) {
+            TreeNode x = queue.poll();
+            if (x.val == target.val) {
+                return x;
+            }
+            
+            if (x.left != null) queue.offer(x.left);
+            if (x.right != null) queue.offer(x.right);
+        }
+        
+        return null;
     }
 }
