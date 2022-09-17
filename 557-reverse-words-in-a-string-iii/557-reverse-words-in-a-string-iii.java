@@ -12,10 +12,10 @@ class Solution {
             
                 
         }
-        return new String(c);
+        return String.valueOf(c);
     }
     private void reverse(char[] c,int lo,int hi){
-        while(lo<hi){
+        while(lo<=hi){
             char temp = c[lo];
             c[lo]=c[hi];
             c[hi]=temp;
