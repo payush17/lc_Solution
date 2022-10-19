@@ -9,14 +9,14 @@ public:
         while(k--){
             int max =0;
             string s;
-            for(auto [key,val]:map){
-                if(val>max){
-                    max=val;
-                    s=key;
+            for(auto x:map){
+                if(x.second>max){
+                    max=x.second;
+                    s=x.first;
                 }
-                else if(val==max){
-                    if(s>key)
-                        s=key;
+                else if(x.second==max){
+                    if(s>x.first)// for lexicographical
+                        s=x.first;
                 }
                     
             }
