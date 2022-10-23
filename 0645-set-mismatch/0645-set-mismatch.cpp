@@ -11,7 +11,7 @@ public:
          ans.push_back( it.first);
     }
     for(int i=1;i<nums.size()+1;i++){
-      if(map[i]==0)
+      if(map.find(i) == map.end())
           ans.push_back(i);
     }   
     return ans;
