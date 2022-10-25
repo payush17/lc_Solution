@@ -1,34 +1,13 @@
-class Solution
-{
-    public:
-
-        vector<string> ans;
-     bool valid(string s )
-    {int diff = 0;
-        for (auto ch: s)
-        {
-            diff += (ch == '(' ? 1 : -1);
-            if (diff < 0) return false;
-        }
-        return !diff;
+class Solution {
+public:
+    void dfs(int n,int op,int cl,vector<string>& paren,string res){
+        if(size(res)== 2*n)paren.push_back(move(res));
+        if(op<n)dfs(n,op+1,cl,paren,res + '(');
+        if(cl<op)dfs(n,op,cl+1,paren,res + ')');
     }
-     void solve(string s, int N)
-    {
-        if (size(s) == N)
-        {
-            if (valid(s)) ans.push_back(s);
-            return;
-        }
-        solve(s + '(', N);
-        solve(s + ')', N);
-        
+    vector<string> generateParenthesis(int n) {
+        vector<string> paren;
+        dfs(n,0,0,paren,"");
+        return paren;
     }
-    vector<string> generateParenthesis(int n)
-    {
-        solve("", 2 *n);
-        return ans;
-        
-    }
-   
-   
 };
