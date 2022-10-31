@@ -3,7 +3,8 @@ class Solution
     public:
         int maximumBags(vector<int> &capacity, vector<int> &rocks, int additionalRocks)
         {
-          long long tot_cap = 0;
+            long long tot_cap = 0;
+            int ans = 0;
             for (auto i: capacity)
             {
                 tot_cap += i;
@@ -11,29 +12,22 @@ class Solution
             if (additionalRocks >= tot_cap)
                 return capacity.size();
 
-            vector<int> v(rocks.size(), -1);
+           	//vector<int> v(rocks.size(), -1);
             for (int i = 0; i < rocks.size(); i++)
             {
-                v[i] = capacity[i] - rocks[i];
+                capacity[i] = capacity[i] - rocks[i];
             }
-             sort(v.begin(),v.end());
-            for (int i = 0; i < rocks.size(); i++)
+            sort(capacity.begin(), capacity.end());
+            int i;
+            for (i = 0; i < rocks.size(); i++)
             {
-                additionalRocks -= v[i];
-                if (additionalRocks >= 0)
-                    v[i] = 0;
-                else
-                break;
+                additionalRocks -= capacity[i];
+                if (additionalRocks < 0)
+                {
+                    break;
+                }
             }
-           
-            
-        
-    int ans = 0;
-    for (auto x: v)
-    {
-        if (x == 0) ans++;
-    }
 
-    return ans;
-}
+            return i;
+        }
 };
