@@ -19,19 +19,14 @@ class Solution
                 }
                 map[s[i]] = s1;
             }
-            int i = 1;
+
             for (auto x: map)
             {
-                if (i != map.size())
-                {
-                    ans += x.second;
-                    ans += ' ';
-                }
-                else
-                    ans += x.second;
-                i++;
-            }
 
+                ans += x.second;
+                ans += ' ';
+            }
+            ans.erase(size(ans) - 1);
             return ans;
         }
 };
