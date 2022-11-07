@@ -9,18 +9,15 @@ class Solution
         vector<int> sorted;
         for (int i = 0; i < size(nums); i++)
         {
-            int temp = (nums[i]);
+            string s = to_string(nums[i]);
             string str = "";
-            if(temp==0) 
-                str=to_string(m[0]);
-             while(temp) {
-                str=to_string(m[temp%10])+str;
-                temp/=10;
+            for (int j = 0; j < s.length(); j++)
+            {
+                str += to_string(m[s[j] - '0']);
             }
 
             
            v.push_back({stoi(str),i});
-            
         }
         sort(begin(v),end(v));
         for (int i = 0; i < v.size(); i++)
