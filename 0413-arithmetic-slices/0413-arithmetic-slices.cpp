@@ -6,15 +6,15 @@ class Solution
             if (nums.size() < 3) return 0;
             int subarray = 0;
             int curr_sub = 0;
+            vector<int> dp (nums.size()+1);
             for (int i = 1; i < nums.size() - 1; i++)
             {
                 if ((nums[i] - nums[i - 1]) == (nums[i + 1] - nums[i]))
                 {
-                    curr_sub++;
-                    subarray += curr_sub;//previous 3 also in AP
+                   dp[i]= dp[i-1]+1;
+                    subarray += dp[i];
                 }
-                else
-                    curr_sub = 0;
+               
             }
             return subarray;
         }
