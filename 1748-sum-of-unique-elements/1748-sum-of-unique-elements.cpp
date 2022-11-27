@@ -1,14 +1,17 @@
-class Solution {
-public:
-    int sumOfUnique(vector<int>& nums) {
-        vector<int> freq(101);
-        for(auto it:nums)
-            freq[it]++;
-        int unqiueEle_Sum=0;
-        for(int i=0;i<nums.size();i++){
-            if(freq[nums[i]]==1)
-               unqiueEle_Sum += nums[i];
+class Solution
+{
+    public:
+        int sumOfUnique(vector<int> &nums)
+        {
+            multiset<int> ms;
+            for (auto it: nums)
+                ms.insert(it);
+            int unqiueEle_Sum = 0;
+            for (auto x: ms)
+            {
+                if (ms.count(x) == 1)
+                    unqiueEle_Sum += x;
+            }
+            return unqiueEle_Sum;
         }
-        return unqiueEle_Sum;
-    }
 };
