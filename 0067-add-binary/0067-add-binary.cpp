@@ -4,7 +4,7 @@ public:
         int carry=0; string ans="";
         int i=size(a)-1;
         int j=size(b)-1;
-         while(i>=0 || j>=0 || carry){
+         while(i>=0 || j>=0 || carry>0){
             if(i>=0){
                 carry += a[i] - '0';
                 i--;
