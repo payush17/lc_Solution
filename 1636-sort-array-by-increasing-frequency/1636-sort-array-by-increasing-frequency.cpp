@@ -23,12 +23,13 @@ class Solution
 
         sort(pair.begin(), pair.end(), sortbysec);
 
-        for (auto p: pair)
+     
+         for (int i = 0; i < pair.size(); i++)
         {
-
-            for (int i = 0; i < p.second; i++)
+            while (pair[i].second>0)
             {
-                sortbyfreq.push_back(p.first);
+                sortbyfreq.push_back(pair[i].first);
+                pair[i].second--;
             }
         }
 
