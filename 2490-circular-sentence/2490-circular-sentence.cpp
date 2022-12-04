@@ -5,7 +5,7 @@ class Solution
         {
        
             int string_len = s.length();
-            if(string_len<2)return true;
+          
             if ((s[0]) != (s[string_len - 1]))
                 return false;
 
