@@ -13,30 +13,19 @@ class Solution
     public:
         ListNode* oddEvenList(ListNode *head)
         {
-            vector<int> oddInd;
-            vector<int> evenInd;
-            int temp = 1;
-            ListNode *curr = head;
-            while (curr != NULL)
+            if (head == NULL || head->next == NULL) return head;
+            ListNode *odd = head;
+            ListNode *even = head->next;
+            ListNode *firsteven = even;
+            while (odd->next != NULL && even->next != NULL)
             {
-                if (temp % 2 == 0)
-                    evenInd.push_back(curr->val);
-                else
-                    oddInd.push_back(curr->val);
-                temp++;
-                curr = curr->next;
+                odd->next = even->next;
+                odd = odd->next;
+                /////////////////////////////////////////
+                even->next = odd->next;
+                even = even->next;
             }
-            for (int x: evenInd)
-            {
-                oddInd.push_back(x);
-            }
-            ListNode* oddeven = new ListNode();
-            ListNode* ans = oddeven;
-            for (int i = 0; i < oddInd.size(); i++)
-            {
-                ans->next = new ListNode(oddInd[i]);
-                ans = ans->next;
-            }
-            return oddeven->next;
+            odd->next = firsteven;
+            return head;
         }
 };
