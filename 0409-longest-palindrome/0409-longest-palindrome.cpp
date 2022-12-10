@@ -1,16 +1,18 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        unordered_map<char,int> map;
+        //unordered_map<char,int> map;
+         vector<int> v(58);
         for(auto x :s){
-            map[x]++;
+            x = x - 'A';
+            v[x]++;
         }
         int longest_palin=0;
         bool one = 0;
-        for(auto x :map){
-            if(x.second % 2 !=0)
+        for(auto x :v){
+            if(x % 2 !=0)
                 one=1;
-            longest_palin += x.second/2;
+            longest_palin += x/2;
             
         }
         longest_palin *= 2;
