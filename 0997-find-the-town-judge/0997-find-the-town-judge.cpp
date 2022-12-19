@@ -4,17 +4,17 @@ class Solution
         int findJudge(int n, vector<vector < int>> &trust)
         {
 
-            vector<int> trusting(n + 1, 0);
-            vector<int> trusted(n + 1, 0);
+            vector<int> trustful(n + 1, 0);
+
             for (auto t: trust)
             {
-                trusting[t[0]]++;
-                trusted[t[1]]++;
+                trustful[t[0]]--;//outderee
+                trustful[t[1]]++;//indegree
             }
             for (int i = 1; i < n + 1; i++)
             {
-                if (trusting[i] == 0 && trusted[i] == n - 1)
-                    return i;
+                 if(trustful[i] == n-1)//indegree should be n-1
+                     return i;
             }
             return -1;
         }
