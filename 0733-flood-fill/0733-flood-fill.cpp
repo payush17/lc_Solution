@@ -3,7 +3,7 @@ class Solution
     public:
         void exploreIsland(vector<vector < int>> &image, int sr, int sc, int color, int prevColor)
         {
-            if (sr < 0 || sr >= image.size() || sc < 0 || sc >= image[0].size() || image[sr][sc] == color)
+            if (sr < 0 || sr >= image.size() || sc < 0 || sc >= image[0].size() || image[sr][sc] == color || image[sr][sc]!=prevColor)
                 return;
 
             if (image[sr][sc] == prevColor)
