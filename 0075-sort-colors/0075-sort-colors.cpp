@@ -1,27 +1,26 @@
-class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-        int zeroCnt=0,oneCnt=0;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==0)zeroCnt++;
-            if(nums[i]==1)oneCnt++;
-        }
-        //cout<<zeroCnt<<" "<<oneCnt;
-        int i=0;
-        while(i<nums.size()){
-            while(zeroCnt-- > 0){
-                nums[i]=0;
-                i++;
+class Solution
+{
+    public:
+        void sortColors(vector<int> &nums)
+        {
+            int cnt0 = -1, cnt1 = -1, cnt2 = -1;
+            for (int i = 0; i < nums.size(); i++)
+            {
+                if (nums[i] == 0)
+                {
+                    nums[++cnt2] = 2;
+                    nums[++cnt1] = 1;
+                    nums[++cnt0] = 0;
+                }
+                else if (nums[i] == 1)
+                {
+                    nums[++cnt2] = 2;
+                    nums[++cnt1] = 1;
+                }
+                else
+                {
+                    nums[++cnt2] = 2;
+                }
             }
-            while(oneCnt-- >0 ){
-                nums[i]=1;
-                i++;
-            }
-            if(i<nums.size())
-            nums[i]=2;
-            i++;
-            
         }
-     
-    }
 };
