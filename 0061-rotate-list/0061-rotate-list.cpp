@@ -14,7 +14,7 @@ class Solution
         ListNode* rotateRight(ListNode *head, int k)
         {
             int length = 1;
-            if (head == NULL || head->next == NULL || k == 0) return head;
+            if (head == NULL) return NULL;
             ListNode *len = head;
             ListNode *dum = head;
             ListNode *trav = head;
@@ -27,14 +27,16 @@ class Solution
             int rot = k % length;
             if (rot == 0) return head;
             dum->next = head;
-
+            
             rot = length - rot;
-            for (int i = 0; i < rot; i++)
-                dum = dum->next;
+            for (int i = 1; i < rot; i++)
+            {
+                trav = trav->next;
+            }
 
-            ListNode *newHead = dum->next;
+            ListNode *newHead = trav->next;
 
-            dum->next = NULL;
+            trav->next = NULL;
 
             return newHead;
         }
