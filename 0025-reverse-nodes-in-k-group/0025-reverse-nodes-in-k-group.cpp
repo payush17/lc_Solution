@@ -1,45 +1,42 @@
 /**
  *Definition for singly-linked list.
  *struct ListNode {
- *    int val;
- *    ListNode * next;
- *    ListNode() : val(0), next(nullptr) {}
- *    ListNode(int x) : val(x), next(nullptr) {}
- *    ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *   int val;
+ *   ListNode * next;
+ *   ListNode() : val(0), next(nullptr) {}
+ *   ListNode(int x) : val(x), next(nullptr) {}
+ *   ListNode(int x, ListNode *next) : val(x), next(next) {}
  *};
  */
 class Solution
 {
     public:
-        ListNode* reverseKGroup(ListNode *head, int k)
+
+        int length(ListNode *node)
         {
-            ListNode *dummy = new ListNode(0);
-            dummy->next = head;
-
-            ListNode *curr = dummy, *nex = dummy, *pre = dummy;
-            int cnt = 0;
-
-            while (curr->next)
+            int count = 0;
+            while (node)
             {
-                curr = curr->next;
-                cnt++;
+                count++;
+                node = node->next;
             }
-            int grp = cnt / k;
-            while (grp--)
-            {
-                curr = pre->next;
-                nex = curr->next;
-
-                for (int i = 1; i < k; i++)
-                {
-                    curr->next = nex->next;
-                    nex->next = pre->next;
-                    pre->next = nex;
-                    nex = curr->next;
-                }
-
-                pre = curr;
-            }
-            return dummy->next;
+            return count;
         }
+
+    ListNode* reverseKGroup(ListNode *head, int k)
+    {
+        if (length(head) < k)
+            return head;
+        ListNode *cur = head;
+        ListNode *prev = NULL, *next = NULL;
+        for (int i = 0; i < k; i++)
+        {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+        head->next = reverseKGroup(cur, k);
+        return prev;
+    }
 };
