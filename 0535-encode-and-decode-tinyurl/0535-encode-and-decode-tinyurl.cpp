@@ -1,20 +1,21 @@
 class Solution {
 public:
-
+    unordered_map<string,string> map;
     // Encodes a URL to a shortened URL.
     string encode(string longUrl) {
-        string org_url ="http://tinyurl.com/"+longUrl;
-        return org_url;
+        string str="";
+        str += (char)(rand()%89);
+        while(map.find(str)!=map.end()){
+            str += (char)(rand()%89);
+        }
+        map[str]=longUrl;
+        return str;
+        
     }
 
     // Decodes a shortened URL to its original URL.
     string decode(string shortUrl) {
-        string org_url="";
-        //19 is length of http://tinyurl.com/
-        for(int i=19;i<shortUrl.size();i++){
-            org_url +=shortUrl[i];
-        }
-        return org_url;
+       return map[shortUrl];
     }
 };
 
