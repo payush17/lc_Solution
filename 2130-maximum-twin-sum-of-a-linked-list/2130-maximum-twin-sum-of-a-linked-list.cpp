@@ -1,11 +1,11 @@
 /**
  *Definition for singly-linked list.
  *struct ListNode {
- *    int val;
- *    ListNode * next;
- *    ListNode() : val(0), next(nullptr) {}
- *    ListNode(int x) : val(x), next(nullptr) {}
- *    ListNode(int x, ListNode *next) : val(x), next(next) {}
+ *  int val;
+ *  ListNode * next;
+ *  ListNode() : val(0), next(nullptr) {}
+ *  ListNode(int x) : val(x), next(nullptr) {}
+ *  ListNode(int x, ListNode *next) : val(x), next(next) {}
  *};
  */
 class Solution
@@ -13,27 +13,40 @@ class Solution
     public:
         int pairSum(ListNode *head)
         {
-            vector<int> sum;
-            ListNode *temp = head;
-            int len = 0;
-            while (temp != NULL)
+            int twinSum = 0;
+            ListNode *fast = head;
+            ListNode *slow = head;
+            while (fast != NULL && fast->next != NULL)
             {
-                sum.push_back(temp->val);
-                temp = temp->next;
-                len++;
+                fast = fast->next->next;
+                slow = slow->next;
             }
-            int low = 0;
-            int high = len - 1;
-            int maxTwinsum = 0;
-            while (low < high)
+           	// ListNode *front, *prev = NULL;
+           	// while (slow != NULL)
+           	// {
+           	//     front = slow->next;
+           	//     prev = slow->next;
+           	//     prev = slow;
+           	//     slow = front;
+           	// }
+            ListNode *nextNode, *prev = NULL;
+            while (slow)
             {
-                int local_sum = sum[low] + sum[high];
-                if (maxTwinsum < local_sum)
-                    maxTwinsum = local_sum;
-                low++;
-                high--;
+                nextNode = slow->next;
+                slow->next = prev;
+                prev = slow;
+                slow = nextNode;
             }
 
-            return maxTwinsum;
+            ListNode *temp = head;
+            while (prev != NULL)
+            {
+                twinSum = max(twinSum, prev->val + temp->val);
+
+                prev = prev->next;
+                temp = temp->next;
+            }
+
+            return twinSum;
         }
 };
