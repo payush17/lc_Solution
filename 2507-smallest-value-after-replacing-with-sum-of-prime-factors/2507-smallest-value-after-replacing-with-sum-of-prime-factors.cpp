@@ -4,7 +4,7 @@ class Solution
         bool check = true;
     int primSum(int n)
     {
-        int sum = 0;
+        int sum = 0;int x = n;
         for (int i = 2; i * i <= n; i++)
         {
             while (n % i == 0)
@@ -14,7 +14,7 @@ class Solution
             }
         }
         if (n > 1) sum += n;
-        if (sum == n)
+        if (sum == x)
             check = false;
         return sum;
     }
@@ -22,7 +22,7 @@ class Solution
     int smallestValue(int n)
     {
         int ans = INT_MAX;
-        if(n==4)return 4;
+        //if(n==4)return 4;
         int ps = n;
         while (check)
         {
