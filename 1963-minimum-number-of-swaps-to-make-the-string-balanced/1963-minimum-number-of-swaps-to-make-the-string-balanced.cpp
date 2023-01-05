@@ -5,14 +5,14 @@ public:
         stack<char> st;
         for(int i=0;i<s.size();i++){
             if(s[i]=='[')
-                st.push(s[i]);
+                swap++;
             if(s[i]==']')
             {
-                if(st.size()>0 && st.top()=='[')
-                    st.pop();
+               if(swap>0)
+                    swap--;
             }
             
         }
-        return (st.size()+1)/2;
+        return (swap+1)/2;
     }
 };
