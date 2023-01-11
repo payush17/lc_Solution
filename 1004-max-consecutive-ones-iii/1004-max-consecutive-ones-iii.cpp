@@ -10,6 +10,7 @@ class Solution
             for (int right = 0; right < nums.size(); right++)
             {
                 freq[nums[right]]++;
+                //if cnt of 0 exceed k shrink window
                 while (freq[0] > k && left <= right)
                 {
                     freq[nums[left]]--;
