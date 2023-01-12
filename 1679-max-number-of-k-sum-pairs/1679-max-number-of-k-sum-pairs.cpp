@@ -3,24 +3,23 @@ class Solution
     public:
         int maxOperations(vector<int> &nums, int k)
         {
+            unordered_map<int, int> map;
             int maxOp = 0;
-            sort(nums.begin(), nums.end());
-            int low = 0;
-            int high = nums.size() - 1;
-            while (low < high)
+           	// for(auto x:nums)
+           	//         map[x]++;
+            int n = 0;
+            int y = 0;
+            for (int i = 0; i < nums.size(); i++)
             {
-                if (nums[low] + nums[high] == k)
+                n = nums[i];
+                y = k - n;
+                if (map[y] > 0)
                 {
                     maxOp++;
-                    low++;
-                    high--;
+                    map[y]--;
                 }
-               else if (nums[low] + nums[high] < k)
-                    low++;
-                else
-                    high--;
+               else map[n]++;
             }
-
             return maxOp;
         }
 };
